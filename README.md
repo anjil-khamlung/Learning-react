@@ -1,6 +1,6 @@
 # Purpose
 Created to learn and expirement react and tailwind css
 
-# Learned
+## Learned
 -props
 -usestate
