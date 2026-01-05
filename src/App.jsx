@@ -1,7 +1,8 @@
 import React from 'react'
 import LearningProps from './components/LearningProps'
 import ProfileCard from './components/ProfileCard'
-import BackgroundChanger from './components/BackgroundChanger'
+import BackgroundChanger from './components/LearningUsestate'
+import LearningUsestate from './components/LearningUsestate'
 
 //LEARNINGPROPS
 // const App = () => {
@@ -51,11 +52,11 @@ import BackgroundChanger from './components/BackgroundChanger'
 // export default App
 
 
-//BACKGROUND CHANGER
+//LearningUsestate
 const App = () => {
   return (
     <div>
-      <BackgroundChanger />
+      <LearningUsestate />
     </div>
   )
 }
