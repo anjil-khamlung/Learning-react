@@ -3,6 +3,7 @@ import LearningProps from './components/LearningProps'
 import ProfileCard from './components/ProfileCard'
 import BackgroundChanger from './components/LearningUsestate'
 import LearningUsestate from './components/LearningUsestate'
+import UseEffectExample from './UseEffectExample'
 
 //LEARNINGPROPS
 // const App = () => {
@@ -52,13 +53,22 @@ import LearningUsestate from './components/LearningUsestate'
 // export default App
 
 
-//LearningUsestate
+// //LearningUsestate
+// const App = () => {
+//   return (
+//     <div>
+//       <LearningUsestate />
+//     </div>
+//   )
+// }
+
+// export default App
+
 const App = () => {
   return (
     <div>
-      <LearningUsestate />
+      <UseEffectExample/>
     </div>
   )
 }
-
 export default App
