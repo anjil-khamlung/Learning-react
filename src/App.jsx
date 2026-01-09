@@ -1,10 +1,10 @@
 import React from 'react'
 import LearningProps from './components/LearningProps'
 import ProfileCard from './components/ProfileCard'
-import BackgroundChanger from './components/LearningUsestate'
-import LearningUsestate from './components/LearningUsestate'
-import UseEffectExample from './UseEffectExample'
+import BackgroundChanger from './pages/LearningUsestate'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import router from './routes/router.jsx'
 //LEARNINGPROPS
 // const App = () => {
 //   return (
@@ -53,22 +53,16 @@ import UseEffectExample from './UseEffectExample'
 // export default App
 
 
-// //LearningUsestate
-// const App = () => {
-//   return (
-//     <div>
-//       <LearningUsestate />
-//     </div>
-//   )
-// }
 
-// export default App
+
+
 
 const App = () => {
   return (
     <div>
-      <UseEffectExample/>
+      <RouterProvider router={router} />
     </div>
   )
 }
+
 export default App

@@ -1,0 +1,29 @@
+import { createBrowserRouter } from "react-router-dom";
+import AppLayout from "../components/AppLayout";
+import ErrorPage from "../pages/ErrorPage";
+import HomePage from "../pages/HomePage";
+import LearningUsestate from "../pages/LearningUsestate";
+import UseEffectExample from "../pages/UseEffectExample";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "useState",
+        element: <LearningUsestate />,
+      },
+      {
+        path: "useEffect",
+        element: <UseEffectExample />,
+      },
+    ],
+  },
+]);
+export default router;
