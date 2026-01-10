@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LearningUsestate from "../pages/LearningUsestate";
 import UseEffectExample from "../pages/UseEffectExample";
+import LoginPage from "../pages/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -25,5 +26,9 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "login",
+    element: <LoginPage />,
+  },  
 ]);
 export default router;

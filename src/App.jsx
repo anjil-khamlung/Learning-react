@@ -5,6 +5,7 @@ import BackgroundChanger from './pages/LearningUsestate'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import router from './routes/router.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 //LEARNINGPROPS
 // const App = () => {
 //   return (
