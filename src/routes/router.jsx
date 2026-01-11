@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage";
 import LearningUsestate from "../pages/LearningUsestate";
 import UseEffectExample from "../pages/UseEffectExample";
 import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -30,5 +31,9 @@ const router = createBrowserRouter([
     path: "login",
     element: <LoginPage />,
   },  
+  {
+    path: "register",
+    element:<RegisterPage/>
+  }
 ]);
 export default router;

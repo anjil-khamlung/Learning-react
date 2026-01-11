@@ -41,7 +41,7 @@ const NavBar = () => {
           <NavLink to="/login">Login</NavLink>
         </button>
         <button className="bg-blue-400 text-white px-2 py-1 border rounded-[0.5rem] min-w-20 cursor-pointer">
-          <NavLink to="">Register</NavLink>
+          <NavLink to="/register">Register</NavLink>
         </button>
       </div>
     </nav>
