@@ -34,6 +34,17 @@ const NavBar = () => {
             UseEffect
           </NavLink>
         </li>
+
+        <li>
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
+            }
+          >
+            Products
+          </NavLink>
+        </li>
       </ul>
 
       <div className="flex gap-2">
