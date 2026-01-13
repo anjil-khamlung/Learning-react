@@ -47,7 +47,7 @@ const SingleProductPage = () => {
             </span>
           </div>
 
-          <button className="mt-6 bg-black text-white px-6 py-2 rounded">
+          <button className="mt-6 bg-black text-white px-6 py-2 rounded cursor-pointer">
             Add to Cart
           </button>
         </div>

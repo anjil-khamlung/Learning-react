@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { MdSystemUpdateAlt } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const UpdateProducts = () => {
   const [data, setData] = useState([]);
@@ -12,6 +13,24 @@ const UpdateProducts = () => {
     const res = await axios.get("https://fakestoreapi.com/products");
     setData(res.data);
   };
+
+const handleDelete = (id) => {
+  axios
+    .delete(`https://fakestoreapi.com/products/${id}`)
+    .then((res) => {
+      console.log(res);
+      toast.success(`Item ${id} deleted successfully`);
+    })
+    .catch((err) => {
+      console.log(err);
+      toast.error("Error while deleting item");
+    });
+  };
+  
+  const handleEdit = (id) => {
+    navigate(`/editProduct/${id}`)
+  }
+
 
   useEffect(() => {
     fetchData();
@@ -25,7 +44,6 @@ const UpdateProducts = () => {
           <tr>
             <th className="border p-2 text-left">ID</th>
             <th className="border p-2 text-left">Image</th>
-
             <th className="border p-2 text-left">Title</th>
             <th className="border p-2 text-left">Description</th>
             <th className="border p-2 text-left">Category</th>
@@ -54,18 +72,18 @@ const UpdateProducts = () => {
                 {product.description}
               </td>
 
-              <td className="border p-2 border-gray-700 text-black-200">
+              <td className="border p-2  text-black-200">
                 {product.category}
               </td>
 
               <td className="border p-2 font-bold">${product.price}</td>
 
-              <td className="border border-gray-600 p-2 text-center">
+              <td className="border  p-2 text-center">
                 <div className="flex items-center justify-center h-full gap-2">
-                  <button className="bg-gray-200 p-1 rounded cursor-pointer">
-                    <MdSystemUpdateAlt className="text-2xl"/>
+                  <button onClick={()=>handleEdit(product.id)} className="bg-gray-200 p-1 rounded cursor-pointer">
+                    <FaEdit className="text-2xl"/>
                   </button>
-                  <button className="bg-gray-200  p-1 rounded cursor-pointer">
+                  <button onClick={()=>handleDelete(product.id)} className="bg-gray-200  p-1 rounded cursor-pointer">
                     <MdDelete className="text-2xl"/>
                   </button>
                 </div>

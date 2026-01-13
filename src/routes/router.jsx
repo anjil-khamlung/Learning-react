@@ -9,7 +9,9 @@ import RegisterPage from "../pages/RegisterPage";
 import ProductsPage from "../pages/ProductsPage";
 import SingleProductPage from "../pages/SingleProductPage";
 import ProductsUpdatePage from "../pages/UpdateProducts";
-import Form from "../components/Form"
+import Form from "../components/AddProduct";
+import AddProduct from "../components/AddProduct";
+import EditProduct from "../components/EditProduct";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,18 @@ const router = createBrowserRouter([
         path: "product/:id",
         element: <SingleProductPage />,
       },
+      {
+        path: "updateProduct",
+        element: <ProductsUpdatePage />,
+      },
+      {
+        path: "addProduct",
+        element: <AddProduct />,
+      },
+      {
+        path: "editProduct/:id",
+        element: <EditProduct />,
+      },
     ],
   },
   {
@@ -47,10 +61,5 @@ const router = createBrowserRouter([
     path: "register",
     element: <RegisterPage />,
   },
-  {
-    path: "productsUpdate",
-    element: <ProductsUpdatePage />,
-  },
-  { path: "addProduct", element: <Form /> },
 ]);
 export default router;

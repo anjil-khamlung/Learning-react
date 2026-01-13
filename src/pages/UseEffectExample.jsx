@@ -7,8 +7,8 @@ const UseEffectExample = () => {
         console.log("count changed!",count)
     },[count])
   return (
-      <div>
-          <button onClick={()=>setCount(count+1)}>click</button>
+      <div className='h-screen flex items-center justify-center'>
+          <button className=' bg-green-500 cursor-pointer rounded p-2 text-white' onClick={()=>setCount(count+1)}>click</button>
     </div>
   )
 }

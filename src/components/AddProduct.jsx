@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import {toast} from "react-toastify"
 
-const LoginPage = () => {
-  const navigate = useNavigate();
+const AddProduct = () => {
+  const [isLoading,setIsLoading]=useState(null)
   const init = {
+    id:"",
     title: "",
     description:"",
     price: "",
@@ -16,8 +19,13 @@ const LoginPage = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    setIsLoading(true)
+    if (formData.id.trim() === "") {
+      alert("id must be filled");
+      return;
+    }
 
     if (formData.title.trim() === "") {
       alert("title must be filled");
@@ -30,20 +38,29 @@ const LoginPage = () => {
     if (formData.category.trim() === "") {
       alert("title must be filled");
       return;
-    }if (formData.price.trim() === "") {
+    } if (formData.price.trim() === "") {
       alert("price must be filled");
       return;
-    }if (formData.image.trim() === "") {
+    } if (formData.image.trim() === "") {
       alert("image must be filled");
       return;
     }
 
-  
+await axios
+      .post("https://fakestoreapi.com/products", formData)
+      .then((res) => {
+        console.log(res);
+        toast.success("Product add successfully.");
+        setFormData(init);
+        setIsLoading(false);
+      })
+      .catch((er) => {
+        console.log(er);
+        toast.error("Error while adding product.");
+      });
 
-    console.log(formData); //api call
-    setFormData(init);
-    navigate("/");
-  };
+  }
+  
 
   return (
     <div className="h-screen grid place-items-center">
@@ -55,13 +72,22 @@ const LoginPage = () => {
         <input
           onChange={handleChange}
           className="p-2 w-full border-2 rounded-md"
+          type="number"
+          placeholder="enter id"
+          name="id"
+          value={formData.id}
+          required
+        />
+        <input
+          onChange={handleChange}
+          className="p-2 w-full border-2 rounded-md"
           type="text"
           placeholder="enter title"
           name="title"
           value={formData.title}
           required
         />
-        <input
+        <textarea
           onChange={handleChange}
           className="p-2 w-full border-2 rounded-md"
           type="description"
@@ -69,20 +95,22 @@ const LoginPage = () => {
           name="description"
           value={formData.description}
           required
-        />
-        <input
+        ></textarea>
+        <select
           onChange={handleChange}
-          className="p-2 w-full border-2 rounded-md"
-          type="category"
-          placeholder="enter category"
-          name="category"
           value={formData.category}
-          required
-        />
+          name="category"
+          className="p-2 border-2 rounded-lg"
+        >
+          <option value="">--Select Category</option>
+          <option value="cloth">men's clothing</option>
+          <option value="electronic">jewelery</option>
+          <option value="furniture">electronics</option>
+        </select>
         <input
           onChange={handleChange}
           className="p-2 w-full border-2 rounded-md"
-          type="price"
+          type="number"
           placeholder="enter price"
           name="price"
           value={formData.price}
@@ -91,8 +119,8 @@ const LoginPage = () => {
         <input
           onChange={handleChange}
           className="p-2 w-full border-2 rounded-md"
-          type="image"
-          placeholder="enter url"
+          type="text"
+          placeholder="enter image url"
           name="image"
           value={formData.image}
           required
@@ -100,11 +128,11 @@ const LoginPage = () => {
         <input
           className="bg-blue-500 p-2 rounded-md font-bold text-white cursor-pointer"
           type="submit"
-          value="submit"
+          value={isLoading?"Loading...":"submit"}
         />
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default AddProduct;

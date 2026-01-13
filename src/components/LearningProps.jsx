@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from "react";
 
 // const LearningProps = (prop) => {
 //   return (
@@ -7,7 +6,6 @@ import React from 'react'
 //           <h1>Hello,{prop.name}</h1>
 //           <h1>my age is {prop.age}</h1>
 //           <h1>i live in {prop.city}</h1>
-
 
 //     </div>
 //   )
@@ -29,15 +27,11 @@ import React from 'react'
 
 // export default LearningProps
 
-
 //PASSING JSX AS PROPS
-const LearningProps = ({children}) => {
+const LearningProps = ({ children }) => {
   return (
-      <div style={{ border: "2px solid blue", padding: "20px" }}>
-          {children}
-      </div>
-  )
-}
+    <div style={{ border: "2px solid blue", padding: "20px" }}>{children}</div>
+  );
+};
 
-export default LearningProps
-
+export default LearningProps;

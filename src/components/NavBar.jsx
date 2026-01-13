@@ -45,6 +45,28 @@ const NavBar = () => {
             Products
           </NavLink>
         </li>
+
+        <li>
+          <NavLink
+            to="/updateProduct"
+            className={({ isActive }) =>
+              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
+            }
+          >
+            UpdateProduct
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="/addProduct"
+            className={({ isActive }) =>
+              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
+            }
+          >
+            AddProduct
+          </NavLink>
+        </li>
       </ul>
 
       <div className="flex gap-2">

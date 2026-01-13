@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const navigate = useNavigate()
@@ -28,6 +29,7 @@ const LoginPage = () => {
 
     
     console.log(formData); //api call
+    toast.success("you have been loged in")
     setFormData(init);
     navigate("/")
   };
