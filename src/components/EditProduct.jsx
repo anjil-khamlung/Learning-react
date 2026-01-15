@@ -41,7 +41,6 @@ const EditProduct = () => {
       await axios.put(`https://fakestoreapi.com/products/${id}`, formData);
         toast.success("Product updated successfully");
         console.log(formData)
-      navigate("/updateProduct");
     } catch (err) {
       toast.error("Failed to update product");
     } finally {
