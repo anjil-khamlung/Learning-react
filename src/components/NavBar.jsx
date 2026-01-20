@@ -1,82 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const NavBar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <nav className="bg-gray-300 flex justify-between items-center min-h-12 text-lg px-2 ">
-      <div>
+    <nav className="relative bg-gray-200 px-4">
+      {/* Top Bar */}
+      <div className="flex justify-between items-center min-h-12">
+        {/* Logo */}
         <NavLink
-          to={"/"}
-          className="text-3xl font-bold bg-linear-to-b from-blue-500 via-blue-500 to-red-500 bg-clip-text text-transparent cursor-pointer"
+          to="/"
+          className="text-3xl font-bold bg-linear-to-b from-blue-500 via-blue-500 to-red-500 bg-clip-text text-transparent"
         >
           Logo
         </NavLink>
-      </div>
 
-      <ul className="flex gap-4">
-        <li>
-          <NavLink
-            to="/usestate"
-            className={({ isActive }) =>
-              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
-            }
-          >
-            UseState
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/useeffect"
-            className={({ isActive }) =>
-              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
-            }
-          >
-            UseEffect
-          </NavLink>
-        </li>
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex gap-4 text-lg">
+          {[
+            "usestate",
+            "useeffect",
+            "products",
+            "updateProduct",
+            "addProduct",
+          ].map((path) => (
+            <li key={path}>
+              <NavLink
+                to={`/${path}`}
+                className={({ isActive }) =>
+                  isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
+                }
+              >
+                {path}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-        <li>
+        {/* Desktop Buttons */}
+        <div className="hidden md:flex gap-2">
           <NavLink
-            to="/products"
-            className={({ isActive }) =>
-              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
-            }
+            to="/login"
+            className="bg-blue-400 text-white px-3 py-1 rounded-md"
           >
-            Products
+            Login
           </NavLink>
-        </li>
-
-        <li>
           <NavLink
-            to="/updateProduct"
-            className={({ isActive }) =>
-              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
-            }
+            to="/register"
+            className="bg-blue-400 text-white px-3 py-1 rounded-md"
           >
-            UpdateProduct
+            Register
           </NavLink>
-        </li>
+        </div>
 
-        <li>
-          <NavLink
-            to="/addProduct"
-            className={({ isActive }) =>
-              isActive ? "text-blue-700 font-bold" : "hover:text-blue-500"
-            }
-          >
-            AddProduct
-          </NavLink>
-        </li>
-      </ul>
-
-      <div className="flex gap-2">
-        <button className="bg-blue-400 text-white px-2 py-1 border rounded-[0.5rem] min-w-20 cursor-pointer">
-          <NavLink to="/login">Login</NavLink>
-        </button>
-        <button className="bg-blue-400 text-white px-2 py-1 border rounded-[0.5rem] min-w-20 cursor-pointer">
-          <NavLink to="/register">Register</NavLink>
+        {/* Mobile Button */}
+        <button onClick={() => setOpen(!open)} className="md:hidden text-2xl">
+          {open ? <FaTimes /> : <FaBars />}
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="md:hidden absolute right-0 top-12 w-48 bg-gray-300 shadow-lg p-4 rounded ">
+          <ul className="flex flex-col gap-3 text-right items-center">
+            <NavLink to="/usestate">UseState</NavLink>
+            <NavLink to="/useeffect">UseEffect</NavLink>
+            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/updateProduct">UpdateProduct</NavLink>
+            <NavLink to="/addProduct">AddProduct</NavLink>
+          </ul>
+
+          <div className="flex flex-col gap-2 mt-4">
+            <NavLink className="bg-blue-400 text-white px-3 py-1 rounded-md">
+              Login
+            </NavLink>
+            <NavLink className="bg-blue-400 text-white px-3 py-1 rounded-md">
+              Register
+            </NavLink>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

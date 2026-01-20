@@ -7,14 +7,16 @@ const EditProduct = () => {
   const { id } = useParams(); // get id from URL
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-
-  const [formData, setFormData] = useState({
+  const init = {
     title: "",
     description: "",
     price: "",
     category: "",
     image: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(init
+  );
 
   // Load product data
   useEffect(() => {
@@ -45,6 +47,7 @@ const EditProduct = () => {
       toast.error("Failed to update product");
     } finally {
       setIsLoading(false);
+      setFormData(init)
     }
   };
 
@@ -52,7 +55,7 @@ const EditProduct = () => {
     <div className="h-screen grid place-items-center">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 shadow-2xl w-[400px] p-6"
+        className="flex flex-col gap-4 shadow-2xl w-[400px] p-6 rounded-2xl"
       >
         <h1 className="text-3xl text-center font-bold">Edit Product</h1>
 
