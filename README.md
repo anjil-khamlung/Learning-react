@@ -7,3 +7,4 @@ Created to learn and expirement react and tailwind css
 -useEffect
 -routing
 -form handling
+-crud operations
