@@ -12,6 +12,7 @@ import ProductsUpdatePage from "../pages/UpdateProducts";
 import Form from "../components/AddProduct";
 import AddProduct from "../components/AddProduct";
 import EditProduct from "../components/EditProduct";
+import CartsPage from "../pages/CartsPage";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: "editProduct/:id",
         element: <EditProduct />,
       },
+      {
+        path: "carts",
+        element:<CartsPage/>
+      }
     ],
   },
   {
