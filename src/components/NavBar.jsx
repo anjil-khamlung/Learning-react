@@ -25,6 +25,7 @@ const NavBar = () => {
             "products",
             "updateProduct",
             "addProduct",
+            "carts",
           ].map((path) => (
             <li key={path}>
               <NavLink
@@ -70,6 +71,7 @@ const NavBar = () => {
             <NavLink to="/products">Products</NavLink>
             <NavLink to="/updateProduct">UpdateProduct</NavLink>
             <NavLink to="/addProduct">AddProduct</NavLink>
+            <NavLink to="/carts">Carts</NavLink>
           </ul>
 
           <div className="flex flex-col gap-2 mt-4">

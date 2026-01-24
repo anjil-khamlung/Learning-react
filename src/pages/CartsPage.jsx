@@ -14,8 +14,8 @@ useEffect(() => {
 }, []);
     
     return (
-      <div>
-        <h1>All Carts </h1>
+      <div className="flex flex-col gap-3 items-center">
+        <h1 className="font-bold text-2xl underline">All Carts </h1>
         {carts.map((cart) => (
           <div key={cart.id}>
             <h3>Cart #{cart.id}</h3>
