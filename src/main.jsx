@@ -3,10 +3,13 @@ import { createRoot } from "react-dom/client";
 import {Slide, ToastContainer} from 'react-toastify'
 import "./index.css";
 import App from "./App.jsx";
+import AuthContextProvider from "./context/AuthContextProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
     <ToastContainer
       position="top-right"
       autoClose={2000}
@@ -20,5 +23,5 @@ createRoot(document.getElementById("root")).render(
       theme="light"
       transition={Slide}
     />
-  </StrictMode>
+  </StrictMode>,
 );

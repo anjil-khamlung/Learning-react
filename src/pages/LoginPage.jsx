@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AuthContext } from "../context/AuthContextProvider";
 
 const LoginPage = () => {
+  const {login,logout}=useContext(AuthContext)
   const navigate = useNavigate()
   const init = {
-    email: "",
+    username: "",
     password: "",
   };
   const [formData, setFormData] = useState(init);
@@ -14,24 +16,29 @@ const LoginPage = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
 
-    if (formData.email.trim() === "") {
-      alert("email must be filled")
+    if (formData.username.trim() === "") {
+      alert("username must be filled")
       return
     }
 
-    if (formData.password.length < 7) {
-      alert("password should contain at least 8 character")
+    if (formData.password.length < 5) {
+      alert("password should contain at least 5 character")
       return
     }
 
+    try {
+      const res = await login(formData)
+      console.log(res)
+      navigate("/")
+      console.log(formData)
+      setFormData(init)
+    } catch (err) {
+      console.log(err)
+    }
     
-    console.log(formData); //api call
-    toast.success("you have been loged in")
-    setFormData(init);
-    navigate("/")
   };
 
   return (
@@ -44,10 +51,10 @@ const LoginPage = () => {
         <input
           onChange={handleChange}
           className="p-2 w-full border-2 rounded-md"
-          type="email"
-          placeholder="enter email"
-          name="email"
-          value={formData.email}
+          type="text"
+          placeholder="enter username"
+          name="username"
+          value={formData.username}
           required
         />
         <input

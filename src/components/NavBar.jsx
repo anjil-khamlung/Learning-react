@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { AuthContext } from "../context/AuthContextProvider";
 
 const NavBar = () => {
+  const { currentUser, login, logout } = useContext(AuthContext);
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -41,29 +44,49 @@ const NavBar = () => {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex gap-2">
-          <NavLink
-            to="/login"
-            className="bg-blue-400 text-white px-3 py-1 rounded-md w-20 text-center"
+        {currentUser ? (
+          <div
+            onClick={() => setOpen(!open)}
+            className="w-10 h-10 rounded-full bg-blue-600 text-white font-bold text-2xl
+                  flex items-center justify-center cursor-pointer"
           >
-            Login
-          </NavLink>
-          <NavLink
-            to="/register"
-            className="bg-blue-400 text-white px-3 py-1 rounded-md w-20 text-center"
-          >
-            Register
-          </NavLink>
-        </div>
+            {currentUser.username?.[0]?.toUpperCase()}
+          </div>
+        ) : (
+          <div className="hidden md:flex gap-2">
+            <NavLink
+              to="/login"
+              className="bg-blue-400 text-white px-3 py-1 rounded-md w-20 text-center"
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/register"
+              className="bg-blue-400 text-white px-3 py-1 rounded-md w-20 text-center"
+            >
+              Register
+            </NavLink>
+          </div>
+        )}
+
+        {open && (
+          <div className="absolute right-0 top-12  bg-gray-300 shadow-lg p-4 rounded flex flex-col gap-3 text-right items-start">
+            <NavLink to="/">{currentUser.username}</NavLink>
+            <NavLink to="/">settings</NavLink>
+            <NavLink onClick={logout} to="/login">
+              logout
+            </NavLink>
+          </div>
+        )}
 
         {/* Mobile Button */}
-        <button onClick={() => setOpen(!open)} className="md:hidden text-2xl">
+        {/* <button onClick={() => setOpen(!open)} className="md:hidden text-2xl">
           {open ? <FaTimes /> : <FaBars />}
-        </button>
+        </button> */}
       </div>
 
       {/* Mobile Menu */}
-      {open && (
+      {/* {open && (
         <div className="md:hidden absolute right-0 top-12 w-48 bg-gray-300 shadow-lg p-4 rounded ">
           <ul className="flex flex-col gap-3 text-right items-center">
             <NavLink to="/usestate">UseState</NavLink>
@@ -83,7 +106,7 @@ const NavBar = () => {
             </NavLink>
           </div>
         </div>
-      )}
+      )} */}
     </nav>
   );
 };
