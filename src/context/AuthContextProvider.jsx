@@ -5,7 +5,7 @@ export const AuthContext = createContext(null);
 
 const AuthContextProvider = ({ children }) => {
   const user = {
-    username: "Spider",
+    username: "Johnd",
     password: "12345678",
   };
 
@@ -21,6 +21,8 @@ const AuthContextProvider = ({ children }) => {
       return res;
     } catch (err) {
       console.log(err);
+
+      throw err
     }
   };
 

@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContextProvider";
 
 const LoginPage = () => {
-  const {login,logout}=useContext(AuthContext)
-  const navigate = useNavigate()
+  const { login, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const init = {
     username: "",
     password: "",
@@ -16,29 +16,31 @@ const LoginPage = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.username.trim() === "") {
-      alert("username must be filled")
-      return
+      alert("username must be filled");
+      return;
     }
 
     if (formData.password.length < 5) {
-      alert("password should contain at least 5 character")
-      return
+      alert("password should contain at least 5 character");
+      return;
     }
 
     try {
-      const res = await login(formData)
-      console.log(res)
-      navigate("/")
-      console.log(formData)
-      setFormData(init)
+      const res = await login(formData);
+      console.log(res);
+      navigate("/");
+      toast.success("Login successfull");
+      console.log(formData);
+      setFormData(init);
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      toast.error("Login failed");
+
     }
-    
   };
 
   return (

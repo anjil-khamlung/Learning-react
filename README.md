@@ -8,3 +8,5 @@ Created to learn and expirement react and tailwind css
 - routing
 - form handling
 - crud operations
+- useContext
+- authentication
